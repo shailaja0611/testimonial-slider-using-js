@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Slider</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.testimonial-slider {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+    background-color: hsl(0, 3%, 59%);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: none;
+}
+
+.testimonial.active {
+    display: block;
+}
+
+.testimonial img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.author {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #2e0f83;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+
+button.prev {
+    left: 5px;
+    
+}
+
+button.next {
+  right: 5px;
+}
+</style>
+</head>
+<body>
+    <div class="testimonial-slider">
+        <div class="testimonial">
+            <img src="img1.jpg" alt="Person 1">
+            <p>"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolore a temporibus corporis eius? ."</p>
+            <p class="author">sonia</p>
+        </div>
+        <div class="testimonial">
+            <img src="images/img.jpg" alt="Person 2">
+            <p>"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolore a temporibus corporis eius? ."</p>
+            <p class="author">Dev</p>
+        </div>
+        <div class="testimonial">
+            <img src="images/img3.jpg" alt="Person 3">
+            <p>"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolore a temporibus corporis eius? ."</p>
+            <p class="author">sana</p>
+        </div>
+    </div>
+    <button class="prev">Prev</button>
+    <button class="next">Next</button>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let testimonials = document.querySelectorAll('.testimonial');
+    let currentIndex = 0;
+
+    document.querySelector('.next').addEventListener('click', function () {
+        testimonials[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        testimonials[currentIndex].classList.add('active');
+    });
+
+    document.querySelector('.prev').addEventListener('click', function () {
+        testimonials[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+        testimonials[currentIndex].classList.add('active');
+    });
+
+    
+    testimonials[currentIndex].classList.add('active');
+});
+    </script>
+</body>
+</html>
